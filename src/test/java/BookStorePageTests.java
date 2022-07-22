@@ -35,12 +35,12 @@ public class BookStorePageTests extends BaseTest{
         Assert.assertTrue(poLoginForm.setTextUserName(LoginDataConstants.USER_NAME), "Unable to set text to UserName field");
         WDUtils.waitForSeconds(1);
 
-        Assert.assertTrue(poLoginForm.isLoginPasswordDisplayed());
-        Assert.assertTrue(poLoginForm.clickLoginPassword());
-        Assert.assertTrue(poLoginForm.setTextPassword(LoginDataConstants.PASSWORD));
+        Assert.assertTrue(poLoginForm.isLoginPasswordDisplayed(), "Unable to confirm Password field is displayed.");
+        Assert.assertTrue(poLoginForm.clickLoginPassword(), "Unable to click Password field.");
+        Assert.assertTrue(poLoginForm.setTextPassword(LoginDataConstants.PASSWORD), "Unable to set text to Password field.");
 
-        Assert.assertTrue(poLoginForm.isLoginButtonDisplayed());
-        Assert.assertTrue(poLoginForm.clickLoginButton());
+        Assert.assertTrue(poLoginForm.isLoginButtonDisplayed(), "Unable to confirm Login button is displayed.");
+        Assert.assertTrue(poLoginForm.clickLoginButton(), "Unable to click Login button.");
 
         WDUtils.waitForSeconds(4);
 
