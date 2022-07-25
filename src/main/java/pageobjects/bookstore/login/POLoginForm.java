@@ -1,6 +1,5 @@
 package pageobjects.bookstore.login;
 
-import framework.utils.webdriver.WDUtils;
 import framework.utils.webelement.WEUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,20 +8,24 @@ import pageobjects.POBase;
 
 public class POLoginForm extends POBase {
     @FindBy(id = "userName")
-    private WebElement poLoginUserName;
+    private WebElement weLoginUserName;
     public POLoginForm(WebDriver driver) { super(driver); }
-    public Boolean isLoginUserNameDisplayed() { return WEUtils.isDisplayed(poLoginUserName); }
-    public Boolean clickLoginUserName() { return WEUtils.click(poLoginUserName); }
-    public Boolean setTextUserName(String text) { return WEUtils.setText(poLoginUserName, text); }
+    public Boolean isLoginUserNameDisplayed() { return WEUtils.isDisplayed(weLoginUserName); }
+    public Boolean clickLoginUserName() { return WEUtils.click(weLoginUserName); }
+    public Boolean setTextUserName(String text) { return WEUtils.setText(weLoginUserName, text); }
 
     @FindBy(id = "password")
-    private WebElement poLoginPassword;
-    public Boolean isLoginPasswordDisplayed() { return WEUtils.isDisplayed(poLoginPassword); }
-    public Boolean clickLoginPassword() { return WEUtils.click(poLoginPassword); }
-    public Boolean setTextPassword(String text) { return WEUtils.setText(poLoginPassword, text); }
+    private WebElement weLoginPassword;
+    public Boolean isLoginPasswordDisplayed() { return WEUtils.isDisplayed(weLoginPassword); }
+    public Boolean clickLoginPassword() { return WEUtils.click(weLoginPassword); }
+    public Boolean setTextPassword(String text) { return WEUtils.setText(weLoginPassword, text); }
 
     @FindBy(id = "login")
-    private WebElement poLoginButton;
-    public Boolean isLoginButtonDisplayed() { return WEUtils.isDisplayed(poLoginButton); }
-    public Boolean clickLoginButton() { return WEUtils.click(poLoginButton); }
+    private WebElement weLoginButton;
+    public Boolean isLoginButtonDisplayed() { return WEUtils.isDisplayed(weLoginButton); }
+    public Boolean clickLoginButton() { return WEUtils.click(weLoginButton); }
+
+    @FindBy(xpath = "//div[@class=\"col-md-12 col-sm-12\"]/p[text()='Invalid username or password!']")
+    private WebElement weUnsuccessfulLoginMessage;
+    public Boolean isUnsuccessfulLoginMessageDisplayed() { return WEUtils.isDisplayed(weUnsuccessfulLoginMessage); }
 }

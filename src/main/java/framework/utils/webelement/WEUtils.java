@@ -1,11 +1,14 @@
 package framework.utils.webelement;
 
+import data.LoginDataConstants;
 import framework.utils.webdriver.WDUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import pageobjects.bookstore.login.POLoginForm;
 import pageobjects.bookstore.login.POLoginNavigationButton;
+import pageobjects.bookstore.login.POLoginUserName;
 import pageobjects.elementspage.buttons.POButtonsButton;
 import pageobjects.elementspage.checkbox.POCheckboxButton;
 import pageobjects.elementspage.checkbox.POCollapseAllCheckBoxesButton;
@@ -19,7 +22,7 @@ public class WEUtils {
             el.click();
             return Boolean.TRUE;
         } catch (Exception e) {
-            return null;
+            return Boolean.FALSE;
         }
     }
 
@@ -29,7 +32,7 @@ public class WEUtils {
             action.doubleClick(el).perform();
             return Boolean.TRUE;
         } catch (Exception e) {
-            return null;
+            return Boolean.FALSE;
         }
     }
 
@@ -39,15 +42,16 @@ public class WEUtils {
             action.contextClick(el).perform();
             return Boolean.TRUE;
         } catch (Exception e) {
-            return null;
+            return Boolean.FALSE;
         }
     }
 
     public static Boolean isDisplayed(WebElement el) {
         try {
-            return el.isDisplayed();
+            el.isDisplayed();
+            return Boolean.TRUE;
         } catch (Exception e) {
-            return null;
+            return Boolean.FALSE;
         }
     }
 
@@ -64,7 +68,7 @@ public class WEUtils {
             el.sendKeys(text);
             return Boolean.TRUE;
         } catch (Exception e) {
-            return null;
+            return Boolean.FALSE;
         }
     }
 
@@ -103,6 +107,29 @@ public class WEUtils {
         WDUtils.scrollDown(driver);
         Assert.assertTrue(poLoginNavigationButton.isLoginNavigationButtonDisplayed(), "Unable to confirm Login navigation button is displayed.");
         Assert.assertTrue(poLoginNavigationButton.clickLoginNavigationButton(), "Unable to click Login navigation button.");
+    }
+
+    public static void successfulLogin(WebDriver driver) {
+        POLoginForm poLoginForm = new POLoginForm(driver);
+        POLoginUserName poLoginUsername = new POLoginUserName(driver);
+        WEUtils.pressLoginNavigationButton(driver);
+        WDUtils.waitForSeconds(1);
+        Assert.assertTrue(poLoginForm.isLoginUserNameDisplayed(), "Unable to confirm UserName field is displayed");
+        Assert.assertTrue(poLoginForm.clickLoginUserName(), "Unable to click UserName field");
+        Assert.assertTrue(poLoginForm.setTextUserName(LoginDataConstants.USER_NAME), "Unable to set text to UserName field");
+        WDUtils.waitForSeconds(1);
+
+        Assert.assertTrue(poLoginForm.isLoginPasswordDisplayed(), "Unable to confirm Password field is displayed.");
+        Assert.assertTrue(poLoginForm.clickLoginPassword(), "Unable to click Password field.");
+        Assert.assertTrue(poLoginForm.setTextPassword(LoginDataConstants.PASSWORD), "Unable to set text to Password field.");
+
+        Assert.assertTrue(poLoginForm.isLoginButtonDisplayed(), "Unable to confirm Login button is displayed.");
+        Assert.assertTrue(poLoginForm.clickLoginButton(), "Unable to click Login button.");
+        WDUtils.waitForSeconds(1);
+
+        Assert.assertTrue(poLoginUsername.isUserNameDisplayed(), "Username field is not displayed.");
+        Assert.assertTrue(poLoginUsername.getUserNameText().equals(LoginDataConstants.USER_NAME),
+                "Different login username encountered: " + poLoginUsername.getUserNameText());
     }
 
 }

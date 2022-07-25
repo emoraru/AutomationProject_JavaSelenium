@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
     protected WebDriver driver;
 
-    @BeforeSuite(alwaysRun = true)
+    //@BeforeSuite(alwaysRun = true)
     public void setup() {
         driver = SeleniumSetup.createWebDriver();
         Assert.assertNotNull(driver, "Unable to create driver");
@@ -30,8 +30,10 @@ public class BaseTest {
     protected void navigateToBasePage() {
         WDUtils.navigateTo(driver, URLConstants.BASE_URL);
         WDUtils.waitForSeconds(5);
-        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.BASE_URL), "When navigating to Homepage url: Different url encountered " + driver.getCurrentUrl());
-        Assert.assertTrue(WDUtils.getPageTitle(driver).contains("ToolsQA"), "When navigating to Homepage url: Different page title encountered: " + driver.getTitle());
+        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.BASE_URL),
+                "When navigating to Homepage url: Different url encountered " + driver.getCurrentUrl());
+        Assert.assertTrue(WDUtils.getPageTitle(driver).contains("ToolsQA"),
+                "When navigating to Homepage url: Different page title encountered: " + driver.getTitle());
 
         //TODO delete this
 //        // dismiss cookies acceptance
@@ -42,10 +44,12 @@ public class BaseTest {
 
     protected void navigateToElementsPage() {
         WDUtils.navigateTo(driver, URLConstants.ELEMENTS_CARD_URL);
-        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.ELEMENTS_CARD_URL), "When navigating to Elements Page url: Different url encountered " + driver.getCurrentUrl());
+        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.ELEMENTS_CARD_URL),
+                "When navigating to Elements Page url: Different url encountered " + driver.getCurrentUrl());
     }
     protected void navigateToBookStorePage() {
         WDUtils.navigateTo(driver, URLConstants.BOOKS_CARD_URL);
-        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.BOOKS_CARD_URL), "When navigating to Book Store page url: Different url encountered " + driver.getCurrentUrl());
+        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.BOOKS_CARD_URL),
+                "When navigating to Book Store page url: Different url encountered " + driver.getCurrentUrl());
     }
 }
