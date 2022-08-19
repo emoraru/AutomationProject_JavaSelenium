@@ -4,7 +4,7 @@ import framework.utils.webdriver.WDUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+
 
 public class BaseTest {
     protected WebDriver driver;
@@ -34,12 +34,6 @@ public class BaseTest {
                 "When navigating to Homepage url: Different url encountered " + driver.getCurrentUrl());
         Assert.assertTrue(WDUtils.getPageTitle(driver).contains("ToolsQA"),
                 "When navigating to Homepage url: Different page title encountered: " + driver.getTitle());
-
-        //TODO delete this
-//        // dismiss cookies acceptance
-//        WebElement weAcceptAndContinueButton = driver.findElement(By.xpath("//div[contains(@class,'cookies-banner_container')]//p[contains(text(), 'ACCEPT & CONTINUE')]"));
-//        Assert.assertTrue(WEUtils.click(weAcceptAndContinueButton), "Unable to click accept & continue button");
-//        WDUtils.waitForSeconds(5);
     }
 
     protected void navigateToElementsPage() {

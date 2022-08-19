@@ -30,7 +30,7 @@ public class WDUtils {
     }
 
 
-    //TODO replace with wait mechanism
+    //TODO should be replaced with the new wait mechanism
     public static void waitForSeconds(int seconds) {
         try {
             Thread.sleep(seconds * 1000);

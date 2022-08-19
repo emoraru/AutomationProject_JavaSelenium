@@ -7,10 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.bookstore.login.POLoginForm;
-import pageobjects.bookstore.login.POLoginNavigationButton;
-import pageobjects.bookstore.login.POLoginUserName;
-import pageobjects.bookstore.login.POLogoutButton;
+import pageobjects.bookstore.login.*;
 
 public class BookStorePageTests extends BaseTest{
 
@@ -53,7 +50,7 @@ public class BookStorePageTests extends BaseTest{
 
         Assert.assertTrue(poLoginForm.isLoginButtonDisplayed(), "Unable to confirm Login button is displayed.");
         Assert.assertTrue(poLoginForm.clickLoginButton(), "Unable to click Login button.");
-        WDUtils.waitForSeconds(1);
+        WDUtils.waitForSeconds(10);
 
         Assert.assertTrue(poLoginUsername.isUserNameDisplayed(), "Username field is not displayed.");
         Assert.assertTrue(poLoginUsername.getUserNameText().equals(LoginDataConstants.USER_NAME),
@@ -96,6 +93,22 @@ public class BookStorePageTests extends BaseTest{
         Assert.assertTrue(poLoginForm.isLoginUserNameDisplayed(), "Unable to confirm User Name field is displayed after Logout");
         Assert.assertTrue(poLoginForm.isLoginPasswordDisplayed(), "Unable to confirm Password field is displayed after Logout");
         Assert.assertTrue(poLoginForm.isLoginButtonDisplayed(), "Unable to confirm Login button is displayed after Logout");
+    }
+
+    @Test
+    public void goToStoreButtonTest() {
+        POProfile poGoToStoreButton = new POProfile(driver);
+
+        WEUtils.successfulLogin(driver);
+        WDUtils.waitForSeconds(1);
+
+        Assert.assertTrue(poGoToStoreButton.isGoToStoreButtonDisplayed(), "Unable to confirm Go to store button is displayed");
+        Assert.assertTrue(poGoToStoreButton.clickGoToStoreButton(), "Unable to click Go to store button");
+        WDUtils.waitForSeconds(3);
+        Assert.assertTrue(WDUtils.getCurrentUrl(driver).equals(URLConstants.BOOKS_CARD_URL), "Unable to confirm BookStore url");
+
+        WDUtils.waitForSeconds(3);
+
     }
 
 

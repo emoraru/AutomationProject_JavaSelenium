@@ -215,7 +215,7 @@ public class ElementsPageTests extends BaseTest {
 
         Assert.assertTrue(poTextFieldsResponse.isPermanentAddressResponseDisplayed(), "Unable to confirm Permanent Address response is displayed.");
         //wrong site response text for Permanent Address
-        Assert.assertTrue(poTextFieldsResponse.getTextPermanentAddressField().equals("Permananet Address :" + IdentityDataConstants.PERMANENT_ADDRESS),
+        Assert.assertTrue(poTextFieldsResponse.getTextPermanentAddressField().equals("Permanent Address :" + IdentityDataConstants.PERMANENT_ADDRESS),
                 "Unable to confirm Permanent Address returns the correct data.");
         System.out.println(poTextFieldsResponse.getTextPermanentAddressField());
         WDUtils.waitForSeconds(1);

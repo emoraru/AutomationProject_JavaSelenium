@@ -9,7 +9,7 @@ import pageobjects.POBase;
 public class POLoginForm extends POBase {
     @FindBy(id = "userName")
     private WebElement weLoginUserName;
-    public POLoginForm(WebDriver driver) { super(driver); }
+
     public Boolean isLoginUserNameDisplayed() { return WEUtils.isDisplayed(weLoginUserName); }
     public Boolean clickLoginUserName() { return WEUtils.click(weLoginUserName); }
     public Boolean setTextUserName(String text) { return WEUtils.setText(weLoginUserName, text); }
@@ -28,4 +28,5 @@ public class POLoginForm extends POBase {
     @FindBy(xpath = "//div[@class=\"col-md-12 col-sm-12\"]/p[text()='Invalid username or password!']")
     private WebElement weUnsuccessfulLoginMessage;
     public Boolean isUnsuccessfulLoginMessageDisplayed() { return WEUtils.isDisplayed(weUnsuccessfulLoginMessage); }
+    public POLoginForm(WebDriver driver) { super(driver); }
 }

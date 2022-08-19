@@ -25,11 +25,5 @@ public class HeaderTests extends BaseTest {
         WDUtils.waitForSeconds(1);
         Assert.assertTrue(WDUtils.getCurrentUrl(driver).contains(URLConstants.BASE_URL),
                 "Found the following URL: " + WDUtils.getCurrentUrl(driver) + " instead of: " + URLConstants.BASE_URL);
-
-
-        //TODO delete this
-        //WDUtils.waitForSeconds(5);
-        //WebElement weSearchViewTextField = driver.findElement(By.cssSelector("div[class *= 'searchBarContainer'] input[placeholder='Search']"));
-        //Assert.assertTrue(WEUtils.isDisplayed(weSearchViewTextField), "Unable to confirm search view was loaded after clicking search button from header");
     }
 }
